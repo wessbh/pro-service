@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/users', require('./routes/usersRoutes'));
-app.use('/cards', require('./routes/cardsRoutes'));
 
 // Start Server
 const port = process.env.PORT || 3000;

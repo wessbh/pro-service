@@ -19,16 +19,12 @@ const  cardSchema = new Schema({
         type : String,
         enum: ['credit', 'edinar']
     },
-    credit: {
-        expiration_date: String,
-        cvv: Number
-    },
-    edinar: {
-        password: {
-            type: Number,
-            minlength: 8,
-            maxlength: 8
-        }
+    expiration_date: String,
+    cvv: Number,
+    password_edinar: {
+        type: Number,
+        minlength: 8,
+        maxlength: 8
     }
 });
 // Create User Schema
@@ -52,11 +48,6 @@ const  userSchema = new Schema({
         password: {
             type: String,
             minlength: 4,
-        },
-        // id_user: Number,
-        username: {
-            type: String,
-            minlength: 4
         },
         nom: {
             type: String,

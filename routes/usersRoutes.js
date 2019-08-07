@@ -10,10 +10,10 @@ const passportJWT = passport.authenticate('jwt', { session: false });
 const passportGoogle = passport.authenticate('googleToken', {session: false});
 const passportFacebook = passport.authenticate('facebookToken', {session: false});
     router.route('/signup')
-        .post( UserController.signUp);
+        .post(validateBody(schemas.authSchema), UserController.signUp);
 
     router.route('/signin')
-        .post( validateBody(schemas.authSchema),passportSignIn, UserController.signIn);
+        .post( validateBody(schemas.loginSchema),passportSignIn, UserController.signIn);
 
     router.route('/secret')
         .get(passportJWT, UserController.secret);

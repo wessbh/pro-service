@@ -12,10 +12,9 @@ signToken = user => {
 module.exports = {
     signUp : async (req, res, next) => {
         if(req.body.user_type == "client"){
-            const {email, password, username, nom, prenom, num_portable, num_fixe, image, user_type} = {
+            const {email, password, nom, prenom, num_portable, num_fixe, image, user_type} = {
                 email: req.body.email,
                 password: req.body.password,
-                username: req.body.username,
                 nom: req.body.nom,
                 prenom: req.body.prenom,
                 num_portable: req.body.num_portable,
@@ -23,13 +22,13 @@ module.exports = {
                 image: req.body.image,
                 user_type: req.body.user_type
             }
-            const {id_user, card_number, expiration_date, cvv} = {
-                id_user: req.body.id_user,
+            const {card_type, card_number, expiration_date, cvv, password_edinar} = {
+                card_type: req.body.card_type,
                 card_number: req.body.card_number,
                 expiration_date: req.body.expiration_date,
                 cvv: req.body.cvv,
+                password_edinar: req.body.password_edinar
             }
-
             // Check if user exists
             const foundUser = await User.findOne({'local.email': email});
             if(foundUser){
@@ -42,20 +41,17 @@ module.exports = {
                 local:{
                     email: email,
                     password: password,
-                    username: username,
                     nom: nom,
                     prenom: prenom,
                     num_portable: num_portable,
                     num_fixe: num_fixe,
                     image: image,
                     cards:{
-                        card_type: 'credit',
-                        id_user: id_user,
+                        card_type: card_type,
                         card_number: card_number,
-                        credit: {
-                            expiration_date: expiration_date,
-                            cvv: cvv,
-                        }
+                        expiration_date: expiration_date,
+                        cvv: cvv,
+                        password_edinar: password_edinar
                     }
                 }
             });
@@ -67,10 +63,9 @@ module.exports = {
         }
         if(req.body.user_type == 'fournisseur'){
                 
-            const {email, password, username, nom, prenom, num_portable, num_fixe, image, user_type, horaire_travail,nb_jours_travail,libelle,siteweb } = {
+            const {email, password, nom, prenom, num_portable, num_fixe, image, user_type, horaire_travail,nb_jours_travail,libelle,siteweb } = {
                 email: req.body.email,
                 password: req.body.password,
-                username: req.body.username,
                 nom: req.body.nom,
                 prenom: req.body.prenom,
                 num_portable: req.body.num_portable,
@@ -94,7 +89,6 @@ module.exports = {
                 local:{
                     email: email,
                     password: password,
-                    username: username,
                     nom: nom,
                     prenom: prenom,
                     num_portable: num_portable,
@@ -141,16 +135,6 @@ module.exports = {
             return res.status(403).json({error : 'There is no users'});
         }
         return res.status(200).json(all_users);
-    },
-    addCard: async (req, res, next) => {
-        // const {id_user, card_number, expiration_date, cvv} = {
-        //     id_user: req.body.id_user,
-        //     card_number: req.body.card_number,
-        //     expiration_date: req.body.expiration_date,
-        //     cvv: req.body.cvv,
-        // }
-        // const user  = await User.findOne(req.body.id_user).;
-        // user.
     }
     
 }
