@@ -1,6 +1,5 @@
 const mongoose = require ('mongoose');
 const bcrypt = require('bcryptjs'); 
-const Card = require ('../models/Card');
 const Schema = mongoose.Schema;
 
 
@@ -36,7 +35,7 @@ const  userSchema = new Schema({
     },
     user_type : {
         type : String,
-        enum: ['client', 'fournisseur'],
+        enum: ['client', 'pro', 'admin', 'super_admin'],
         required: true
     },
     local: {

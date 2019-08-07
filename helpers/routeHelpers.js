@@ -18,7 +18,12 @@ module.exports = {
             email: joi.string().email().required(),
             password: joi.string().min(4).required()
         }),
-        authSchema : joi.object().keys({
+        authSchemaAdmin : joi.object().keys({
+            user_type: joi.string().required(),
+            email: joi.string().email().required(),
+            password: joi.string().min(4).required()
+        }),
+        authSchemaClient : joi.object().keys({
             email: joi.string().email().required(),
             password: joi.string().min(4).required(),
             nom: joi.string().min(4).required(),
@@ -32,6 +37,21 @@ module.exports = {
             expiration_date: joi.date(),
             cvv: joi.string().length(3),
             password_edinar: joi.string().length(8)
+        }),
+        authSchemaPro : joi.object().keys({
+            user_type: joi.string().required(),
+            email: joi.string().email().required(),
+            password: joi.string().min(4).required(),
+            nom: joi.string().min(4).required(),
+            prenom: joi.string().min(4).required(),
+            num_portable: joi.number().min(4).required(),
+            num_fixe: joi.number().min(4).required(),
+            image: joi.string().required(),
+            horaire_travail: joi.string().required(),
+            nb_jours_travail: joi.string().required(),
+            libelle: joi.string().required(),
+            siteweb: joi.string().required()
+            
         }),
         card_schema : joi.object().keys({
             id_user: joi.string().required(),

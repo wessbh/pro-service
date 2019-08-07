@@ -9,8 +9,12 @@ const passportSignIn = passport.authenticate('local', {session : false});
 const passportJWT = passport.authenticate('jwt', { session: false });
 const passportGoogle = passport.authenticate('googleToken', {session: false});
 const passportFacebook = passport.authenticate('facebookToken', {session: false});
-    router.route('/signup')
-        .post(validateBody(schemas.authSchema), UserController.signUp);
+    router.route('/signup_client')
+        .post(validateBody(schemas.authSchemaClient), UserController.signUpClient);
+    router.route('/signup_pro')
+        .post(validateBody(schemas.authSchemaPro), UserController.signUpPro);
+    router.route('/signup_admin')
+        .post(validateBody(schemas.authSchemaAdmin), UserController.signUpAdmin);
 
     router.route('/signin')
         .post( validateBody(schemas.loginSchema),passportSignIn, UserController.signIn);
