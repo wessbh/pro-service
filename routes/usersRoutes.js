@@ -32,8 +32,5 @@ const passportFacebook = passport.authenticate('facebookToken', {session: false}
 
     router.route('/all_users')
         .get(passportJWT, UserController.getAll_users);
-
-    router.route('/update')
-        .get(passportJWT, UserController.updateUser);
         
 module.exports = router;

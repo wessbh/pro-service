@@ -168,14 +168,6 @@ module.exports = {
             return res.status(403).json({error : 'There is no users'});
         }
         return res.status(200).json(all_users);
-    },
-    updateUser: async (req, res, next) => {
-        var myquery = { _id: "5d39ab01b699c708686caeb5" };
-        var newvalues = { $set: {num_portable: "12345321", num_fixe: "12345668" } };
-        const user = await User.findById('5d39ab01b699c708686caeb5');
-          console.log(user);
-          await user.save();
-        return res.status(200).json({user});
     }
     
 }
