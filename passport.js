@@ -51,7 +51,7 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
             google: {
                 id: profile.id,
                 email: profile.emails[0].value,
-                img: profile.photos[0].value
+                image: profile.photos[0].value
             }
         } );
         console.log("User doesn't exist, Creating a new one...");
@@ -83,7 +83,7 @@ passport.use('facebookToken', new FacebookTokenStrategy ({
             facebook: {
                 id: profile.id,
                 email: profile.emails[0].value,
-                img: profile.photos[0].value
+                image: profile.photos[0].value
             }   
         });
         

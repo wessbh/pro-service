@@ -84,7 +84,7 @@ const  userSchema = new Schema({
             type: String,
             lowercase: true
         },
-        img: {
+        image: {
             type: String
         }
     },
@@ -96,8 +96,16 @@ const  userSchema = new Schema({
             type: String,
             lowercase: true
         },
-        img: {
+        image: {
             type: String
+        },
+        num_portable: {
+            type: Number,
+            minlength: 8
+        },
+        num_fixe: {
+            type: Number,
+            minlength: 8
         }
     },
 
