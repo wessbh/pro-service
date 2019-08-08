@@ -32,5 +32,11 @@ const passportFacebook = passport.authenticate('facebookToken', {session: false}
 
     router.route('/all_users')
         .get(passportJWT, UserController.getAll_users);
+
+    router.route('/add_card')
+        .put(UserController.add_card);
+
+    router.route('/delete_card')
+        .delete(UserController.delete_card);
         
 module.exports = router;

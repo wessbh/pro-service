@@ -80,6 +80,7 @@ passport.use('facebookToken', new FacebookTokenStrategy ({
         }
         const newUser = new User({
             method : 'facebook',
+            user_type: 'client',
             facebook: {
                 id: profile.id,
                 email: profile.emails[0].value,

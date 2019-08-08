@@ -49,13 +49,13 @@ module.exports = {
                 num_portable: num_portable,
                 num_fixe: num_fixe,
                 image: image,
-                cards:{
-                    card_type: card_type,
-                    card_number: card_number,
-                    expiration_date: expiration_date,
-                    cvv: cvv,
-                    password_edinar: password_edinar
-                }
+            },
+            cards:{
+                card_type: card_type,
+                card_number: card_number,
+                expiration_date: expiration_date,
+                cvv: cvv,
+                password_edinar: password_edinar
             }
         });
         await newUser.save();
@@ -168,6 +168,51 @@ module.exports = {
             return res.status(403).json({error : 'There is no users'});
         }
         return res.status(200).json(all_users);
+    },
+    add_card: async (req, res, next) => {
+        var id = req.body.id;
+        const {card_type, card_number, expiration_date, cvv, password_edinar} = {
+            card_type: req.body.card_type,
+            card_number: req.body.card_number,
+            expiration_date: req.body.expiration_date,
+            cvv: req.body.cvv,
+            password_edinar: req.body.password_edinar
+        }
+        var user = await User.updateOne(
+            { _id: id },
+            {
+                $push:{
+                    cards:{
+                        card_type: card_type,
+                        card_number: card_number,
+                        expiration_date: expiration_date,
+                        cvv: cvv,
+                        password_edinar: password_edinar
+                        }
+                    }
+            }
+         );
+         if(!user){
+             res.status(404).json({"message": "user not found"});
+         }
+         res.status(200).json({"message": "Card added"});
+    },
+    delete_card: async (req, res, next) => {
+        var id = req.body.id;
+        var card_number = req.body.card_number;
+        var user = await User.updateOne(
+            { _id: id },
+            {$pull:{
+                    cards:{
+                        card_number: card_number
+                        }
+                    }
+            }
+         );
+         if(!user){
+             res.status(404).json({"message": "user not found"});
+         }
+         res.status(200).json({"message": "Card deleted"});
     }
     
 }

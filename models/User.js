@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose');
 const bcrypt = require('bcryptjs'); 
 const Schema = mongoose.Schema;
-
+var uniqueValidator = require('mongoose-unique-validator');
 
 //Create Card schema
 
@@ -9,7 +9,8 @@ const  cardSchema = new Schema({
     card_number: {
         type: Number,
         minlength: 16,
-        maxlength: 16
+        maxlength: 16,
+        unique: true
     },
     id_user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +27,7 @@ const  cardSchema = new Schema({
         maxlength: 8
     }
 });
+cardSchema.plugin(uniqueValidator);
 // Create User Schema
 const  userSchema = new Schema({
     method : {
@@ -64,9 +66,7 @@ const  userSchema = new Schema({
             type: Number,
             minlength: 8
         },
-        image: String,
-        cards: [cardSchema],
-        
+        image: String,        
         horaire_travail: String,
         nb_jours_travail: Number,
         libele: {
@@ -76,6 +76,7 @@ const  userSchema = new Schema({
             type: String
         }
     },
+    cards: [cardSchema],
     google: {
         id: {
             type: String
