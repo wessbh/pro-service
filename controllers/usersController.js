@@ -82,6 +82,7 @@ module.exports = {
             libelle: req.body.libelle,
             siteweb: req.body.siteweb
         }
+        
         // Check if user exists
         const foundUser = await User.findOne({'local.email': email});
         if(foundUser){
