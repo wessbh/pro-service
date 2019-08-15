@@ -3,6 +3,7 @@ const morgan = require ('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const app = express();
+var cors = require('cors');
 
 // Connect to Database
 mongoose.Promise = global.Promise;
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/eservice', { useNewUrlParser: true });
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 app.use('/users', require('./routes/usersRoutes'));
