@@ -1,7 +1,6 @@
 const mongoose = require ('mongoose');
 const bcrypt = require('bcryptjs'); 
 const Schema = mongoose.Schema;
-var uniqueValidator = require('mongoose-unique-validator');
 
 //Create Card schema
 
@@ -9,8 +8,7 @@ const  cardSchema = new Schema({
     card_number: {
         type: Number,
         minlength: 16,
-        maxlength: 16,
-        unique: true
+        maxlength: 16
     },
     id_user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -27,7 +25,6 @@ const  cardSchema = new Schema({
         maxlength: 8
     }
 });
-cardSchema.plugin(uniqueValidator);
 // Create User Schema
 const  userSchema = new Schema({
     method : {
