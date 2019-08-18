@@ -65,6 +65,7 @@ const  userSchema = new Schema({
         },
         image: String,        
         horaire_travail: String,
+        heures_pause: String,
         nb_jours_travail: Number,
         libele: {
             type: String
