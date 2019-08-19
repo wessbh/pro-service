@@ -29,7 +29,7 @@ module.exports = {
             card_type: req.body.card_type,
             card_number: req.body.card_number,
             expiration_date: req.body.expiration_date,
-            cvv: req.body.cvv,
+            cvv:  req.body.cvv,
             password_edinar: req.body.password_edinar
         }
         // Check if user exists
@@ -65,10 +65,10 @@ module.exports = {
         return res.status(200).json({token});
     },
     signUpPro: async (req, res, next) => {
-        if(!req.res.user_type == "pro"){
+        if(req.body.user_type != "pro"){
             return res.status(400).json({"message": "This only for professionals"});
         }
-        const {email, password, nom, prenom, num_portable, num_fixe, image, user_type, horaire_travail,nb_jours_travail,libelle,siteweb } = {
+        const {email, password, nom, prenom, num_portable, num_fixe, image, user_type, horaire_travail, heures_pause, nb_jours_travail,libelle,siteweb } = {
             email: req.body.email,
             password: req.body.password,
             nom: req.body.nom,
@@ -79,6 +79,7 @@ module.exports = {
             user_type: req.body.user_type,
             horaire_travail: req.body.horaire_travail,
             nb_jours_travail: req.body.nb_jours_travail,
+			heures_pause: req.body.heures_pause,
             libelle: req.body.libelle,
             siteweb: req.body.siteweb
         }
@@ -102,6 +103,7 @@ module.exports = {
                 image: image,
                 horaire_travail: horaire_travail,
                 nb_jours_travail: nb_jours_travail,
+				heures_pause: heures_pause,
                 libelle: libelle,
                 siteweb: siteweb
             }

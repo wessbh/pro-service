@@ -33,10 +33,11 @@ module.exports = {
             image: joi.string().min(4).required(),
             user_type: joi.string().required(),
             card_type: joi.string().required(),
-            card_number: joi.string().length(16),
-            expiration_date: joi.date(),
-            cvv: joi.string().length(3),
-            password_edinar: joi.string().length(8)
+            card_number: joi.string(),
+            expiration_date: joi.string(),
+            password_edinar: joi.string(),
+            cvv: joi.number(),
+			
         }),
         authSchemaPro : joi.object().keys({
             user_type: joi.string().required(),
@@ -49,6 +50,7 @@ module.exports = {
             image: joi.string().required(),
             horaire_travail: joi.string().required(),
             nb_jours_travail: joi.string().required(),
+            heures_pause: joi.string().required(),
             libelle: joi.string().required(),
             siteweb: joi.string().required()
             
