@@ -24,20 +24,14 @@ module.exports = {
             password: joi.string().min(4).required()
         }),
         authSchemaClient : joi.object().keys({
+            user_type: joi.string().required(),
             email: joi.string().email().required(),
             password: joi.string().min(4).required(),
             nom: joi.string().min(4).required(),
             prenom: joi.string().min(4).required(),
             num_portable: joi.number().min(4).required(),
             num_fixe: joi.number().min(4).required(),
-            image: joi.string().min(4).required(),
-            user_type: joi.string().required(),
-            card_type: joi.string().required(),
-            card_number: joi.string(),
-            expiration_date: joi.string(),
-            password_edinar: joi.string(),
-            cvv: joi.number(),
-			
+            image: joi.string().min(4).required()
         }),
         authSchemaPro : joi.object().keys({
             user_type: joi.string().required(),
@@ -48,11 +42,7 @@ module.exports = {
             num_portable: joi.number().min(4).required(),
             num_fixe: joi.number().min(4).required(),
             image: joi.string().required(),
-            horaire_travail: joi.string().required(),
-            nb_jours_travail: joi.string().required(),
-            heures_pause: joi.string().required(),
-            libelle: joi.string().required(),
-            siteweb: joi.string().required()
+            matricule_fiscale: joi.string().required()
             
         }),
         card_schema : joi.object().keys({

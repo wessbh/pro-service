@@ -69,10 +69,11 @@ const  userSchema = new Schema({
         nb_jours_travail: Number,
         libele: {
             type: String
-        },
+            },
         siteweb:{
             type: String
-        }
+        },
+        matricule_fiscale: String
     },
     cards: [cardSchema],
     google: {
