@@ -77,7 +77,7 @@ module.exports = {
     if (!(category)) {
       res.status(404).json({ message: 'Not found' });
     }
-    res.status(200).json(category);
+    res.status(200).json(category[0].categories[0]);
   },
   getAllCategories: async (req, res, next) => {
     var id_domaine = req.params.domaineId;
@@ -86,7 +86,7 @@ module.exports = {
     if (!(categories)) {
       res.status(404).json({ message: 'Not found' });
     }
-    res.status(200).json(categories);
+    res.status(200).json(categories[0].categories);
   },
   add_service: async (req, res, next) => {
     var id_domaine = req.body.domaineId;
@@ -147,16 +147,6 @@ module.exports = {
     var picked = services_array.find(s => s._id == service_id);
     services_array.pull(picked);
     category.services = services_array;
-    // await category.updateOne({ _id: id_category },
-    //   {
-    //     $pull: {
-    //       services: {
-    //         _id: service_id
-    //       }
-    //     }
-    //   }
-    // );
-
     await domaineModel.updateOne(
       { _id: id_domaine },
       {
@@ -181,6 +171,32 @@ module.exports = {
       }
     );
     res.status(200).json(services_array);
+  },
+  getAllServices: async (req, res, next) => {
+    var id_domaine = req.params.domaineId;
+    var id_category = req.params.categoryId;
+    var service_id = req.params.serviceId;
+    var domaine = await domaineModel.findById(id_domaine);
+    var category = await domaine.getSingleCategory(id_domaine, id_category);
+    var services_array = category[0].categories[0].services;
+    var picked = services_array.find(s => s._id == service_id);
+    if (!(category)) {
+      res.status(404).json({ message: 'Not found' });
+    }
+    res.status(200).json(services_array);
+  },
+  getService: async (req, res, next) => {
+    var id_domaine = req.params.domaineId;
+    var id_category = req.params.categoryId;
+    var service_id = req.params.serviceId;
+    var domaine = await domaineModel.findById(id_domaine);
+    var category = await domaine.getSingleCategory(id_domaine, id_category);
+    var services_array = category[0].categories[0].services;
+    var picked = services_array.find(s => s._id == service_id);
+    if (!(category)) {
+      res.status(404).json({ message: 'Not found' });
+    }
+    res.status(200).json(picked);
   }
 
 }

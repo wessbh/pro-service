@@ -56,9 +56,9 @@ DomaineSchema.methods.getAllCategories = async function (id_domaine) {
         throw new Error(error);
     }
 }
-CategorySchema.methods.getSingleCat = async function (id_category) {
+CategorySchema.methods.getAllServices = async function (id_category) {
     try {
-        return await categoryModel.find({ _id: id_category });
+        return await categoryModel.findById({ _id: id_category }).select('services');
     } catch (error) {
         throw new Error(error);
     }
