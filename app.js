@@ -18,10 +18,11 @@ app.use('*', cors());
 // Routes
 app.use('/domaines', require('./routes/domainesRoutes'));
 app.use('/users', require('./routes/usersRoutes'));
-app.get('/',(req, res) =>{
+app.get('*',(req, res) =>{
     res.status(200).json({Message: 'Hello, Welcome to Pro-services Backend'});
 });
 // Start Server
 const port = process.env.PORT || 3000;
-app.listen(port);
-console.log('Server listening at : '+port);
+app.listen(port, function(){
+    console.log('Server listening at : '+port);
+});
