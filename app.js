@@ -19,7 +19,7 @@ app.use('*', cors());
 app.use('/domaines', require('./routes/domainesRoutes'));
 app.use('/users', require('./routes/usersRoutes'));
 app.get('/',(req, res) =>{
-    res.status(200).json({'ùessage': 'Hello, Welcome to Pro-services Backend'});
+    res.status(200).json({Message: 'Hello, Welcome to Pro-services Backend'});
 });
 // Start Server
 const port = process.env.PORT || 3000;
